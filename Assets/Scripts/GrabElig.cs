@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class GrabElig : MonoBehaviour
 {
+    public GameObject CurrentlyHeldOrb;
     public Transform playerDepth;
     public Collider cl;
     public bool Grabbed;
@@ -14,6 +15,11 @@ public class GrabElig : MonoBehaviour
     public GameObject GrabbedObject;
     private GameObject PotentialTarget = null;
     public GameObject orbPrefab;
+    public GameObject flashLight_r;
+    public GameObject flashLight_l;
+    
+    private bool isLightOrb = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -59,6 +65,7 @@ public class GrabElig : MonoBehaviour
         MERORB othertarget = other.GetComponent<MERORB>();
         if (othertarget == null || othertarget.Objectypes != MERORB.ObjectType.Orb){return;}
         GrabbedObject = other;
+        CurrentlyHeldOrb = other;
         Rigidbody rb = GrabbedObject.GetComponent<Rigidbody>();
         GrabbedObject.transform.position = transform.position;
         GrabbedObject.transform.SetParent(gb.transform);
@@ -66,6 +73,23 @@ public class GrabElig : MonoBehaviour
         rb.isKinematic = true;
         rb.interpolation = RigidbodyInterpolation.None;
         Grabbed = true;
+        if (othertarget.type == MERORB.Orb.LightOrb)
+        {
+            if (player.hAxis > 0)
+            {
+                flashLight_r.SetActive(true);
+                flashLight_l.SetActive(false);
+            }
+            else if (player.hAxis < 0)
+            {
+                flashLight_r.SetActive(false);
+                flashLight_l.SetActive(true);
+            }
+        }
+        else
+        {
+            isLightOrb = false;
+        }
     }
     void releaseOrb()
     {
@@ -75,6 +99,7 @@ public class GrabElig : MonoBehaviour
     rb.useGravity = true;
     rb.isKinematic = false;
     GrabbedObject = null;
+    CurrentlyHeldOrb = null;
     Grabbed = false;
     }
     public void flipOrbDirection()

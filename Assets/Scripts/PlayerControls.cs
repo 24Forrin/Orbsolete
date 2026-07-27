@@ -4,13 +4,13 @@ using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
 {
     public float speed = 10f;
-    private float hAxis = 0f;
+    public float hAxis = 0f;
     private Rigidbody RB;
 
     public bool playerDirect = true;
     public float movespeed = 2f;
     public float direct = 1f;
-
+    public FollowLightDir FLD;
     public float jumpVelo = 0f;
     public float jumpForce = 0.5f;
     public float jumpFall = -0.5f;
@@ -24,6 +24,7 @@ public class PlayerControls : MonoBehaviour
     void Start()
     {
         RB = GetComponent<Rigidbody>();
+        FLD = GetComponent<FollowLightDir>();
     }
 
     void Update()
@@ -35,14 +36,16 @@ public class PlayerControls : MonoBehaviour
             playerDirect = false;
             direct = -1.2f;
             OrbLight.flipOrbDirection();
+     
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             playerDirect = true;
             direct = 1.2f;
             OrbLight.flipOrbDirection();
-        }
 
+        }
+    
         // Jump
         if (Input.GetKeyDown(KeyCode.Space) && !grassTouch.hasJumped)
         {
@@ -50,6 +53,7 @@ public class PlayerControls : MonoBehaviour
             peake = transform.position.y + 1f;
             jumpVelo = jumpForce;
         }
+        
         
         if (Input.GetKeyDown(KeyCode.Z))
         {
