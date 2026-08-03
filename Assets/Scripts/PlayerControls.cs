@@ -57,7 +57,8 @@ public class PlayerControls : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            Sunlight.ActivateSun();
+            //Sunlight.ActivateSun();
+            StartCoroutine(Sunlight.sunlightGradient());
         }
 
         // Stop rising once the peak is reached
