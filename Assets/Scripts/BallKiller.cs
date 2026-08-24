@@ -3,6 +3,7 @@ using UnityEngine;
 public class BallKiller : MonoBehaviour
 {
     public Collider cl;
+    public Transform respawnPoint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,7 +24,8 @@ public class BallKiller : MonoBehaviour
         }
     if (other.CompareTag("Player"))
         {
-        other.gameObject.transform.position = new Vector3(-15, -1, 0);
+        other.gameObject.transform.position = respawnPoint.position;
+        other.gameObject.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
         }
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 public class TriggerRelay : MonoBehaviour
 {
     public LevelManager LM;
+    public bool inSide;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +21,24 @@ public class TriggerRelay : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player has entered the trigger");
+            LM.Sunlight.ActivateSun();
+            inSide = true;
+        }
+    }
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player has exited the trigger");
+            LM.Sunlight.ActivateSun();
+            inSide = false;
+        }
+    }
+    public void DoubleCheck()
+    {   
+        Debug.Log("DoubleCheck called. inSide: " + inSide);
+        if (inSide == false)
+        {
             LM.Sunlight.ActivateSun();
         }
     }

@@ -11,6 +11,7 @@ public class GlobalLightActivation : MonoBehaviour
     
     private Quaternion dayRotation;
     private Quaternion nightRotation;
+    public TriggerRelay LightTrigger;
 
     void Start()
     {
@@ -27,6 +28,14 @@ public class GlobalLightActivation : MonoBehaviour
         // Stop any currently running transitions so they don't fight each other if pressed twice quickly
         StopAllCoroutines(); 
         StartCoroutine(SunlightGradient());
+        if (LightTrigger != null)
+        {
+            Debug.Log("LIGHTEN");
+            LightTrigger.DoubleCheck();
+        }else if (LightTrigger == null)
+        {
+            Debug.Log("NETHGIL");
+        }
     }
 
     private IEnumerator SunlightGradient()
