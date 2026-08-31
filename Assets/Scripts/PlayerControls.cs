@@ -35,15 +35,11 @@ public class PlayerControls : MonoBehaviour
         {
             playerDirect = false;
             direct = -1.2f;
-            OrbLight.flipOrbDirection();
-     
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
             playerDirect = true;
             direct = 1.2f;
-            OrbLight.flipOrbDirection();
-
         }
     
         // Jump
@@ -58,7 +54,6 @@ public class PlayerControls : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             //Sunlight.ActivateSun();
-            Sunlight.ActivateSun();
         }
 
         // Stop rising once the peak is reached
