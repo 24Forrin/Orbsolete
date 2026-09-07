@@ -1,13 +1,11 @@
 using UnityEngine;
-
-public class TriggerRelay : MonoBehaviour
+public class MuralRead : MonoBehaviour
 {
-    public LevelManager LM;
-    public bool inSide;
+    public GameObject MuralText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        MuralText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -20,18 +18,14 @@ public class TriggerRelay : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player has entered the trigger");
-            LM.Sunlight.ActivateSun();
-            inSide = true;
+            MuralText.SetActive(true);
         }
     }
     void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player has exited the trigger");
-            LM.Sunlight.ActivateSun();
-            inSide = false;
+            MuralText.SetActive(false);
         }
     }
 }

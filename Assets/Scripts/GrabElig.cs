@@ -15,10 +15,6 @@ public class GrabElig : MonoBehaviour
     public GameObject GrabbedObject;
     private GameObject PotentialTarget = null;
     public GameObject orbPrefab;
-    public GameObject flashLight_r;
-    public GameObject flashLight_l;
-    
-    private bool isLightOrb = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -73,23 +69,6 @@ public class GrabElig : MonoBehaviour
         rb.isKinematic = true;
         rb.interpolation = RigidbodyInterpolation.None;
         Grabbed = true;
-        if (othertarget.type == MERORB.Orb.LightOrb)
-        {
-            if (player.hAxis > 0)
-            {
-                flashLight_r.SetActive(true);
-                flashLight_l.SetActive(false);
-            }
-            else if (player.hAxis < 0)
-            {
-                flashLight_r.SetActive(false);
-                flashLight_l.SetActive(true);
-            }
-        }
-        else
-        {
-            isLightOrb = false;
-        }
     }
     void releaseOrb()
     {
