@@ -10,7 +10,7 @@ public class GrabElig : MonoBehaviour
     public Transform playerDepth;
     public Collider cl;
     public bool Grabbed;
-    public PlayerControls player;
+    public PlayerController player;
     public GameObject gb;
     public GameObject GrabbedObject;
     private GameObject PotentialTarget = null;

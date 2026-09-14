@@ -6,7 +6,7 @@ public class Controller : MonoBehaviour
 {
     public GameObject BallSpawn;
     public Transform playerDepth;
-    public PlayerControls player;
+    public PlayerController player;
     public GrabElig grabRange;
     public bool spawning = false;
     void Start()

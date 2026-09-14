@@ -1,13 +1,16 @@
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class PlayerControllerWithVariableJump : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
 
     [Header("Movement Settings")]
     public float moveSpeed = 6.0f;
     public float gravity = -20.0f;
+    public float coyoteTime = 0.2f; 
+    private float coyoteTimeCounter = 0f;
+    public float direct = 1f;
 
     [Header("Variable Jump Settings")]
     public float jumpHeight = 2.0f;
@@ -33,16 +36,26 @@ public class PlayerControllerWithVariableJump : MonoBehaviour
 
         // Horizontal Movement (WASD / Left Stick)
         float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
-        Vector3 move = transform.right * moveX + transform.forward * moveZ;
+        float moveZ = 0f;
+        Vector3 move = new Vector3(moveX, 0, moveZ).normalized;
+        //Vector3 move = transform.right * moveX + transform.forward * moveZ;
         
         controller.Move(move * moveSpeed * Time.deltaTime);
-
+        if (moveX > 0)
+        {
+            direct = 1f;
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        } 
+        else if (moveX < 0)
+        {
+            direct = -1f;
+            transform.rotation = Quaternion.Euler(0f, 0, 180f);
+        }
         // Variable Jump Logic
         // 1. Press jump button to start the jump
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            // Physics formula to calculate initial velocity based on target jump height
+        // Physics formula to calculate initial velocity based on target jump height
             velocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravity);
         }
 
