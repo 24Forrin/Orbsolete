@@ -1,13 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BallKiller : MonoBehaviour
 {
-    public Collider cl;
     public Transform respawnPoint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        cl = GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
@@ -24,8 +23,8 @@ public class BallKiller : MonoBehaviour
         }
     if (other.CompareTag("Player"))
         {
-        other.gameObject.transform.position = respawnPoint.position;
-        other.gameObject.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
+        Debug.Log("Player has been Respawned");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

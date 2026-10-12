@@ -15,15 +15,17 @@ public class GrabElig : MonoBehaviour
     public GameObject GrabbedObject;
     private GameObject PotentialTarget = null;
     public GameObject orbPrefab;
+    private Quaternion originalRotation;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cl = GetComponent<BoxCollider>();
+        originalRotation = transform.rotation;
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         Vector3 playerPos = playerDepth.position;
         transform.position = new Vector3(playerPos.x+player.direct, playerPos.y, playerPos.z);
@@ -32,6 +34,10 @@ public class GrabElig : MonoBehaviour
             if (GrabbedObject == null){
                 grabOrb(PotentialTarget);
             }
+        }
+        if (Grabbed)
+        {
+            transform.rotation = originalRotation;
         }
         if (Input.GetMouseButtonUp(0))
         {

@@ -59,14 +59,14 @@ public class PlayerController : MonoBehaviour
         if (moveX > 0)
         {
             direct = 1f;
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            // transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         } 
         else if (moveX < 0)
         {
             direct = -1f;
             // --- 2. ROTATION FIX ---
             // Y-axis must be 180 to face left. Z-axis flips the character upside down.
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f); 
+            // transform.rotation = Quaternion.Euler(0f, 180f, 0f); 
         }
         
         // Variable Jump Logic
