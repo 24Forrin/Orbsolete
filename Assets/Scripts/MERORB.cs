@@ -23,6 +23,7 @@ public class MERORB : MonoBehaviour
     public GameObject FireOrbPrefab;
     public GameObject mossyDoor;
     public GameObject particleFire;
+    private Server server;
     public virtual void useAbility()
     {
         Debug.Log("HA");
@@ -59,6 +60,7 @@ public class MERORB : MonoBehaviour
     }
     public void Cook(MERORB orb1, MERORB orb2)
     {
+        server = FindObjectOfType<Server>();
         if (orb1.GetInstanceID() > orb2.GetInstanceID())
         {
             return;
@@ -68,9 +70,14 @@ public class MERORB : MonoBehaviour
         {
             Vector3 PrioOrbPos = (orb1.transform.position + orb2.transform.position)/2f;
             Instantiate(NewOrb, PrioOrbPos, Quaternion.identity);
+            server.addOrb(NewOrb);
+            server.removeOrb(orb1.gameObject);
+            server.removeOrb(orb2.gameObject);
             Destroy(orb1.gameObject);
             Destroy(orb2.gameObject);
         }else if (orb1.type == Orb.FireOrb && orb2.Objectypes == ObjectType.MossyDoor){
+            server.removeOrb(orb1.gameObject);
+            server.removeOrb(orb2.gameObject);
             Destroy(orb1.gameObject);
             Destroy(orb2.gameObject);
         }

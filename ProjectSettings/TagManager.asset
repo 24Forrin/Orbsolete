@@ -6,8 +6,8 @@ TagManager:
   tags:
   - LightOrb
   - FireOrb
-  - Orbs
   - Floor
+  - AshOrb
   layers:
   - Default
   - TransparentFX
