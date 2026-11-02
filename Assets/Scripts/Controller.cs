@@ -10,8 +10,11 @@ public class Controller : MonoBehaviour
     public GrabElig grabRange;
     public Server server;
     public bool spawning = false;
+    public GameObject orbSpawning;
+    public LevelManager lm;
     void Start()
     {
+        lm = GetComponent<LevelManager>();
     }
 
     // Update is called once per frame
@@ -21,7 +24,8 @@ public class Controller : MonoBehaviour
         if (Input.GetMouseButton(1)&&(!grabRange.Grabbed)&&!spawning)
         {
             spawning = true;
-            Instantiate(BallSpawn, new Vector3(playerPos.x+player.direct/2, playerPos.y+0.5f, playerPos.z), Quaternion.identity);
+            orbSpawning = Instantiate(BallSpawn, new Vector3(playerPos.x+player.direct/2, playerPos.y+0.5f, playerPos.z), Quaternion.identity);
+            orbSpawning.
             server.addOrb(BallSpawn);
         }else if (!Input.GetMouseButton(1)){
             spawning = false;

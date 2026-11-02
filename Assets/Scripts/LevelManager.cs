@@ -11,7 +11,6 @@ public class LevelManager : MonoBehaviour
         for (int i = 0; i < darkBlocks.Length; i++)
         {
             darkBlocks[i].GetComponent<Collider>().enabled = false;
-            darkBlocks[i].GetComponent<MeshRenderer>().enabled = false;
         }
     }
 
