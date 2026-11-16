@@ -25,8 +25,6 @@ public class Controller : MonoBehaviour
         {
             spawning = true;
             orbSpawning = Instantiate(BallSpawn, new Vector3(playerPos.x+player.direct/2, playerPos.y+0.5f, playerPos.z), Quaternion.identity);
-            orbSpawning.
-            server.addOrb(BallSpawn);
         }else if (!Input.GetMouseButton(1)){
             spawning = false;
         }

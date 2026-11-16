@@ -14,7 +14,7 @@ public class FollowLightDir : MonoBehaviour
 
     void Update()
     {
-        if (GE.CurrentlyHeldOrb == this.gameObject)
+        if (GE.GrabbedObject == this.gameObject)
         {
             orbLight.localRotation = Quaternion.Euler(0, 0, 0);
         }

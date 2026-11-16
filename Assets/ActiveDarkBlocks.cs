@@ -31,9 +31,11 @@ public class ActiveDarkBlocks : MonoBehaviour
         db = lm.darkBlocks; 
         for (int i = 0; i < lm.darkBlocks.Length; i++)
         {
-            other.enabled = true;
-            Debug.Log("Can Collide");
-
+            if (other.gameObject == lm.darkBlocks[i])
+            {
+                other.enabled = true;
+                Debug.Log("Can Collide");
+            }
         }
     }
     void OnTriggerExit(Collider other)
@@ -43,8 +45,11 @@ public class ActiveDarkBlocks : MonoBehaviour
         db = lm.darkBlocks; 
         for (int i = 0; i < lm.darkBlocks.Length; i++)
         {
-            other.enabled = false;
-            Debug.Log("Cannot Collide");
+            if (other.gameObject == lm.darkBlocks[i])
+            {
+                other.enabled = false;
+                Debug.Log("Cannot Collide");
+            }
         }
     }
 

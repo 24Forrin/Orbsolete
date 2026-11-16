@@ -8,6 +8,7 @@ TagManager:
   - FireOrb
   - Floor
   - AshOrb
+  - DarkBlock
   layers:
   - Default
   - TransparentFX
